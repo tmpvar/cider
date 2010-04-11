@@ -8,15 +8,18 @@
     "add a syntax highlighter plugin",
     "figure out how to unit test in a canvas, perhaps reading pixels..",
     "implement a simple cursor which performs operations on text",
-    "implement simple flow routines, for text-wrapping",
-    "implement simple module inclusion functionality",
-    "externalize much of the state to the modules: sizing, text, etc.."
+    "implement simple flow routines, for text-wrapping"
   ],
   "done" : [
     "add a cursor plugin",
     "add a keyboard plugin",
+    "add basic plugin registry/api",
     "build render loop with the ability to add,remove, and order render steps",
     "create a poc/demo"
-  ]
+  ],
+  "nope" [
+    "implement simple module inclusion functionality",
+    "externalize much of the state to the modules: sizing, text, etc.."
+  ]  
 }
 
