@@ -4,15 +4,15 @@
     <head>
         <title>Cider: Canvas Text Editor</title>
         <script type="text/javascript" src="lib/cider.js"></script>
+        <script type="text/javascript" src="plugin/renderer/renderer.js"></script>
         <script type="text/javascript">
             window.onload = function() {
                 cider(document.getElementById("canvas"));
+                cider.fn.addPlugin("renderer", cider.renderer)
             }
         </script>
     </head>
     <body>
-      
-
     <p>
       <h1>Cider</h1>
       tiny canvas text editor
