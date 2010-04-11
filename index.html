@@ -6,11 +6,26 @@
         <script type="text/javascript" src="lib/cider.js"></script>
         <script type="text/javascript">
             window.onload = function() {
-                cider();
+                cider(document.getElementById("canvas"));
             }
         </script>
     </head>
     <body>
-        <p>asdf</p>
+      
+
+    <p>
+      <h1>Cider</h1>
+      tiny canvas text editor
+    </p>
+    
+    <h2>License</h2>
+    <p>
+      MIT, see <a href="LICENSE.txt">LICENSE.txt</a>
+    </p>
+    <p>
+      <h2>Standard Cider</h2>
+      <canvas id="canvas" height="600" width="600"></canvas>
+    </p>
+    
     </body>
 </html>
