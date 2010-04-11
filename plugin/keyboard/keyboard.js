@@ -6,7 +6,7 @@
  */
 
 (function(cider) {
-    cider.keybinder = function(editor) {
+    cider.keyboard = function(editor) {
 
         // set up key press event listener
         // TODO: calls to keybinder plugin
@@ -100,5 +100,5 @@
             }
         }
     };
-    cider.keybinder.prototype = {};
+    cider.keyboard.prototype = {};
 })(cider);
