@@ -17,7 +17,7 @@
     "build render loop with the ability to add,remove, and order render steps",
     "create a poc/demo"
   ],
-  "nope" [
+  "nope" : [
     "implement simple module inclusion functionality",
     "externalize much of the state to the modules: sizing, text, etc.."
   ]  
