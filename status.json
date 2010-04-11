@@ -1,14 +1,21 @@
 {
   "todo" : [
+    "make cider handle multiple canvases via multiple cider instances",
+    "expose plugins and their actions via the cider api, for binding events to actions",
+    "add text api: getText,setText, setChar(row,col,char), getChar(row,col), insertString(row,col, string), removeChar(row,col)",
+    "add methods for offseting the text's origin currently 0,0 on the canvas",
+    "add a line number plugin",
+    "add a syntax highlighter plugin",
     "figure out how to unit test in a canvas, perhaps reading pixels..",
-    "build render loop with the ability to add,remove, and order render steps",
     "implement a simple cursor which performs operations on text",
     "implement simple flow routines, for text-wrapping",
     "implement simple module inclusion functionality",
     "externalize much of the state to the modules: sizing, text, etc.."
-    
   ],
   "done" : [
+    "add a cursor plugin",
+    "add a keyboard plugin",
+    "build render loop with the ability to add,remove, and order render steps",
     "create a poc/demo"
   ]
 }
