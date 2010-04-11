@@ -8,6 +8,10 @@
 (function(cider) {
     cider.keybinder = function(editor) {
 
+        // set up key press event listener
+        // TODO: calls to keybinder plugin
+        document.addEventListener('keydown', handleKey, true);
+
         function handleKey (event) {
             var code = event.keyCode,
                 append = false,
@@ -58,9 +62,11 @@
                 append = true;
                 store(char, append);
             }
+            event.character = char;
         }
         function store (char, append) {
-            var line = cider.fn.lines;
+            
+            /*var line = cider.fn.lines;
             
             if(!line[pos.row]) {
                 line[pos.row] = char;
@@ -73,7 +79,7 @@
             } else {
                 pos.row++;
                 line[pos.row] = char;
-            }
+            }*/
         }
         function keyReturn () {
             pos.row++;
