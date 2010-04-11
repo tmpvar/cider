@@ -30,4 +30,4 @@
     });
   };
   cider.renderer.prototype = {};
-})(cider)
+})(cider);

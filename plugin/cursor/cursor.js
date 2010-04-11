@@ -1,13 +1,21 @@
 (function(cider) {
 
-  cider.Cursor = function(editor) {
-
+    cider.cursor = function(editor) {
+    // cursor position
+    pos = {col: 0, row: 0},
+    
+    // set up key press event listener
+    // TODO: calls to keybinder plugin
+    document.addEventListener('keydown', function(event){
+        handleKey(event);
+    }, false);
+    
     var hideDuration     = 1000,
         showDuration     = 1000,
         opacity          = 0.5,
         color            = "#ff6600",
         ctx              = editor.getContext(),
-        interval         = null // we can pause this, and expose show/hide
+        interval         = null, // we can pause this, and expose show/hide
         x                = 0,
         y                = 0,
         charWidth        = 50,
@@ -44,5 +52,5 @@
     
   };
   
-  cider.Cursor.prototype = {};
+  cider.cursor.prototype = {};
 })(cider);
