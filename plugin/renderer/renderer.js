@@ -21,9 +21,11 @@
 
       ctx.fillStyle = foreground;
 
+      
+
       if (cider.fn.lines) {
         for (l; l < cider.fn.lines.length; l++) {
-          ctx.fillText(cider.fn.lines[l], 10, lineHeight);
+          ctx.fillText(cider.fn.lines[l], 10+editor.getOffset().x, lineHeight+editor.getOffset().y);
           lineHeight += 20;
         }
       }

@@ -3,8 +3,6 @@
     "expose font metrics height/width via the cider api",
     "make cider handle multiple canvases via multiple cider instances",
     "expose plugins and their actions via the cider api, for binding events to actions",
-    "add text api: getText,setText, setChar(row,col,char), getChar(row,col), insertString(row,col, string), removeChar(row,col)",
-    "add methods for offseting the text's origin currently 0,0 on the canvas",
     "add a line number plugin",
     "add a text selection plugin",
     "add a clipboard plugin which uses the textarea hack for interacting with the os clipboard",
@@ -15,6 +13,8 @@
     "consider adding the ability to order render steps (scene graph?)"
   ],
   "done" : [
+    "add methods for offseting the text's origin currently 0,0 on the canvas",
+    "add text api: getText,setText, setChar(row,col,char), getChar(row,col), insertString(row,col, string), removeChar(row,col)",
     "add a cursor plugin",
     "add a keyboard plugin",
     "add basic plugin registry/api",
