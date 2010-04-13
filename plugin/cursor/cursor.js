@@ -1,3 +1,10 @@
+/*
+ * Cursor - Canvas Plugin
+ *
+ * Licensed under the MIT (LICENSE.txt)
+ * 
+ */
+
 (function(cider) {
 
   cider.cursor = function(editor) {
@@ -7,10 +14,14 @@
     // set up key press event listener
     // TODO: calls to keybinder plugin
     document.addEventListener('keydown', function(event){
-        editor.lines[pos.row] = (editor.lines[pos.row])                 ? 
-                                editor.lines[pos.row] + event.character :
-                                event.character;
+        store(event, editor);
     }, false);
+    
+    function store (event) {
+        editor.lines[pos.row] = (editor.lines[pos.row]) ? 
+                editor.lines[pos.row] + event.character :
+                event.character;
+    }
     
     var hideDuration     = 500,
         showDuration     = 500,
@@ -21,10 +32,9 @@
         charWidth        = 11,
         charHeight       = 16,
         currentOperation = null;
-    
-    
+
     self.doCurrentOperation = function(ctx) {
-      currentOperation(ctx);
+        currentOperation(ctx);
     };
 
     editor.addRenderStep(self.doCurrentOperation);
@@ -41,25 +51,26 @@
       } else {
           posx = currPos*charWidth+12;
       }
+      
       ctx.fillStyle = "white";//"rgba(255,102,51,255)";
       ctx.fillRect(posx,10,2,charHeight);
     };
     
     var hide = function(ctx) {
-      // fade out or whatever..
+        // fade out or whatever..
     };
-    
+      
     var cycleRenderOperation = function() {
-      if (currentOperation === hide) {
-        currentOperation = show;
-        setTimeout(cycleRenderOperation, showDuration);
-      } else {
-        currentOperation = hide;
-        setTimeout(cycleRenderOperation, hideDuration);
-      }
+        if (currentOperation === hide) {
+            currentOperation = show;
+            setTimeout(cycleRenderOperation, showDuration);
+        } else {
+            currentOperation = hide;
+            setTimeout(cycleRenderOperation, hideDuration);
+        }
     };
+
     cycleRenderOperation();
-    
   };
   
   cider.cursor.prototype = {};
