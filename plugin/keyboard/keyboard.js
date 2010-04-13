@@ -50,17 +50,22 @@
             if (event.shiftKey) {
                 if (event.shiftKey && event.keyCode != '16') {
                     char = shiftKeys[code];
+                    /*
                     append = true;
-                    
                     store(char, append);
+                    */
                 } else {
+                    /*
                     char = "skip";
+                    */
                 }
             } else  {
                 char = printKeys[code];
+                /*
                 char = char;
                 append = true;
                 store(char, append);
+                */
             }
             event.character = char;
         }
@@ -89,7 +94,7 @@
         function keyBackspace () {
             if (line[pos.row] !== undefined && line[pos.row].length === 0) {
                 pos.row--;
-            }addRenderStep
+            }
             if (line[pos.row] === undefined) {
                 pos.row++;
             }

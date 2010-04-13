@@ -1,7 +1,6 @@
 (function(cider) {
 
   cider.cursor = function(editor) {
-    
     // cursor position
     var pos = {col: 0, row: 0},self = this;
     
@@ -11,32 +10,39 @@
         editor.lines[pos.row] = (editor.lines[pos.row])                 ? 
                                 editor.lines[pos.row] + event.character :
                                 event.character;
-        
-        
     }, false);
     
-    var hideDuration     = 1000,
-        showDuration     = 1000,
+    var hideDuration     = 500,
+        showDuration     = 500,
         opacity          = 0.5,
         color            = "#ff6600",
-        interval         = null, // we can pause this, and expose show/hide
-        x                = 0,
-        y                = 0,
-        charWidth        = 50,
-        charHeight       = 50,
+        x                = 10,
+        y                = 10,
+        charWidth        = 11,
+        charHeight       = 16,
         currentOperation = null;
     
     
     self.doCurrentOperation = function(ctx) {
       currentOperation(ctx);
-    }
+    };
 
     editor.addRenderStep(self.doCurrentOperation);
     
     var show = function(ctx) {
-      var posx = x*charWidth, posy=y*charHeight;
+      if (editor.lines[pos.row]) {
+          var currPos = editor.lines[pos.row].length;
+      } else {
+          var currPos = 0;
+      }
+
+      if (currPos == 0) {
+          var posx = 10, posy = 10;
+      } else {
+          posx = currPos*charWidth+12;
+      }
       ctx.fillStyle = "white";//"rgba(255,102,51,255)";
-      ctx.fillRect(posx,posy,posx+charHeight,posy+charWidth);
+      ctx.fillRect(posx,10,2,charHeight);
     };
     
     var hide = function(ctx) {
@@ -45,7 +51,7 @@
     
     var cycleRenderOperation = function() {
       if (currentOperation === hide) {
-        currentOperation = show
+        currentOperation = show;
         setTimeout(cycleRenderOperation, showDuration);
       } else {
         currentOperation = hide;
