@@ -7,12 +7,14 @@
         <script type="text/javascript" src="plugin/renderer/renderer.js"></script>
         <script type="text/javascript" src="plugin/cursor/cursor.js"></script>
         <script type="text/javascript" src="plugin/keyboard/keyboard.js"></script>
+        <script type="text/javascript" src="plugin/linenum/linenum.js"></script>
         <script type="text/javascript">
             window.onload = function() {
                 cider(document.getElementById("canvas"));
                 cider.fn.addPlugin("renderer", cider.renderer);
                 cider.fn.addPlugin("keyboard", cider.keyboard);
                 cider.fn.addPlugin("cursor", cider.cursor);
+                cider.fn.addPlugin("linenum", cider.linenum);
             }
         </script>
     </head>
