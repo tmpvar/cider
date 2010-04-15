@@ -26,7 +26,7 @@
     // TODO: calls to keybinder plugin
     document.addEventListener('keydown', function(event){
       if (event.character) {
-        editor.pos(pos.row, pos.col).append(event.character);
+        editor.pos(pos.row, pos.col).insert(event.character);
         pos.col+=event.character.length;
       }
     }, false);
