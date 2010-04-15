@@ -1,7 +1,6 @@
 {
   "todo" : [
     "expose font metrics height/width via the cider api",
-    "expose plugins and their actions via the cider api, for binding events to actions",
     "add a text selection plugin",
     "add a clipboard plugin which uses the textarea hack for interacting with the os clipboard",
     "add a syntax highlighter plugin",
@@ -9,6 +8,7 @@
     "implement simple flow routines, for text-wrapping"
   ],
   "done" : [
+    "expose plugins and their actions via the cider api, for binding *events* to actions",
     "implement a simple cursor which performs operations on text",
     "make cider handle multiple canvases via multiple cider instances",
     "add a line number plugin",
