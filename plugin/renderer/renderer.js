@@ -24,16 +24,12 @@
       ctx.fillRect (0, 0, 600, 600);
       ctx.fillStyle = foreground;
 
-      if (cider.fn.lines) {
-        var offset = editor.getOffset();
+      var offset = editor.getTextOffset(), len=editor.lines().length;
         
-        for (l=0; l < cider.fn.lines.length; l++) {
-          ctx.fillText(cider.fn.lines[l], 
-                       offset.x+5, 
-                       (lineHeight*l)+offset.y);
-                       
-//          lineHeight += 20;
-        }
+      for (l=0; l<len; l++) {
+        ctx.fillText(editor.fn.lines[l], 
+                     offset.x+5, 
+                     (lineHeight*l)+offset.y);
       }
       ctx.restore();
     });
