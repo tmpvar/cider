@@ -1,5 +1,5 @@
 (function(cider) {
-  cider.renderer = function(editor) {
+  cider.plugins.renderer = function(editor) {
 
     var ctx = editor.context(),
         background = "#2A3335",
@@ -46,5 +46,5 @@
     }, 30);
     
   };
-  cider.renderer.prototype = {};
+
 })(cider);
