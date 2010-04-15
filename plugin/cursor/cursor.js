@@ -14,14 +14,10 @@
     // set up key press event listener
     // TODO: calls to keybinder plugin
     document.addEventListener('keydown', function(event){
-        store(event, editor);
+      editor.lines[pos.row] = (editor.lines[pos.row])                  ? 
+                               editor.lines[pos.row] + event.character :
+                               event.character;
     }, false);
-    
-    function store (event) {
-        editor.lines[pos.row] = (editor.lines[pos.row]) ? 
-                editor.lines[pos.row] + event.character :
-                event.character;
-    }
     
     var hideDuration     = 500,
         showDuration     = 500,
