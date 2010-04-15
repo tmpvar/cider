@@ -24,10 +24,11 @@
       ctx.fillRect (0, 0, 600, 600);
       ctx.fillStyle = foreground;
 
-      var offset = editor.getTextOffset(), len=editor.lines().length;
-        
+      var offset = editor.getTextOffset(),
+          len    = editor.length();
       for (l=0; l<len; l++) {
-        ctx.fillText(editor.lines().get(l).toString(), 
+        var line = editor.pos(l,0);
+        ctx.fillText(line.toString(), 
                      offset.x+5, 
                      (lineHeight*l)+offset.y);
       }
