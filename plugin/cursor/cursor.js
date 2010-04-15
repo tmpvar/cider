@@ -9,8 +9,8 @@
 
   cider.cursor = function(editor) {
     // cursor position
-    var pos = {col: 0, row: 0},self = this;
-    
+    var pos = {col: 0, row: 0},self = this, ctx = editor.context();
+
     // set up key press event listener
     // TODO: calls to keybinder plugin
     document.addEventListener('keydown', function(event){
@@ -33,13 +33,13 @@
         charHeight       = 16,
         currentOperation = null;
 
-    self.doCurrentOperation = function(ctx) {
-        currentOperation(ctx);
+    self.doCurrentOperation = function() {
+        currentOperation();
     };
 
-    editor.addRenderStep(self.doCurrentOperation);
+    editor.bind("cider.render", self.doCurrentOperation);
     
-    var show = function(ctx) {
+    var show = function() {
       if (editor.lines[pos.row]) {
           var currPos = editor.lines[pos.row].length;
       } else {
@@ -51,12 +51,12 @@
       } else {
           posx = currPos*charWidth+12;
       }
-      
+
       ctx.fillStyle = "white";//"rgba(255,102,51,255)";
       ctx.fillRect(posx,10,2,charHeight);
     };
     
-    var hide = function(ctx) {
+    var hide = function() {
         // fade out or whatever..
     };
       
