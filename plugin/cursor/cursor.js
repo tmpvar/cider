@@ -7,16 +7,18 @@
 
 (function(cider) {
 
-  cider.cursor = function(editor) {
+  cider.plugins.cursor = function(editor) {
     // cursor position
     var pos = {col: 0, row: 0},self = this, ctx = editor.context();
-
+console.log("cursor...");
     // set up key press event listener
     // TODO: calls to keybinder plugin
     document.addEventListener('keydown', function(event){
-      editor.lines[pos.row] = (editor.lines[pos.row])                  ? 
+      console.log("heh")
+      editor.pos(pos.row, pos.col).append(event.character);
+      /*editor.lines[pos.row] = (editor.lines[pos.row])                  ? 
                                editor.lines[pos.row] + event.character :
-                               event.character;
+                               event.character;*/
     }, false);
     
     var hideDuration     = 500,
@@ -34,8 +36,8 @@
     });
     
     var show = function() {
-      if (editor.lines[pos.row]) {
-          var currPos = editor.line(pos.row).length();
+      if (editor.lines(pos.row)) {
+          var currPos = editor.lines(pos.row).length();
       } else {
           var currPos = 0;
       }
@@ -67,6 +69,5 @@
 
     cycleRenderOperation();
   };
-  
-  cider.cursor.prototype = {};
+
 })(cider);

@@ -27,7 +27,7 @@
       var offset = editor.getTextOffset(), len=editor.lines().length;
         
       for (l=0; l<len; l++) {
-        ctx.fillText(editor.fn.lines[l], 
+        ctx.fillText(editor.lines().get(l).toString(), 
                      offset.x+5, 
                      (lineHeight*l)+offset.y);
       }

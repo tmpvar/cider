@@ -6,7 +6,7 @@
  */
 
 (function(cider) {
-    cider.keyboard = function(editor) {
+    cider.plugins.keyboard = function(editor) {
 
         // set up key press event listener
         // TODO: calls to keybinder plugin
@@ -17,8 +17,7 @@
             
             var code = event.keyCode,
                 char = "",
-                casing = "",
-                line = cider.fn.lines;
+                casing = "";
 
             shiftKeys = {
                 48:")", 49:"!", 50:"@", 51:"#", 52:"$", 53:"%", 54:"^", 55:"&", 56:"*",
@@ -53,5 +52,4 @@
         }
     };
 
-    cider.keyboard.prototype = {};
 })(cider);
