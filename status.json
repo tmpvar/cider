@@ -3,7 +3,6 @@
     "expose font metrics height/width via the cider api",
     "add a text selection plugin",
     "add a clipboard plugin which uses the textarea hack for interacting with the os clipboard",
-    "add a syntax highlighter plugin",
     "figure out how to unit test in a canvas, perhaps reading pixels..",
     "implement simple flow routines, for text-wrapping"
   ],
@@ -24,6 +23,9 @@
     "implement simple module inclusion functionality",
     "externalize much of the state to the modules: sizing, text, etc..",
     "consider adding the ability to order render steps (scene graph?)"
-  ]  
+  ],
+  "future" : [
+    "add a syntax highlighter plugin"
+  ]
 }
 
