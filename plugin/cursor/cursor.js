@@ -28,6 +28,27 @@
       if (event.character) {
         editor.pos(pos.row, pos.col).insert(event.character);
         pos.col+=event.character.length;
+      } else {
+          if (event.keyCode == "13") {
+              editor.pos(pos.row++,pos.col);
+              var x = editor.getTextOffset().x;
+              editor.setTextOffset({x:x, y:pos.row*18});
+          } else if (event.keyCode =="8") {
+              /* BACKSPACE
+              // begining of line
+              if (editor.pos(pos.row,0).toString().length  === 0) {
+                  editor.pos(pos.row--,pos.col);
+              }
+              // first line
+              if (editor.pos(pos.row,0).toString().length  === undefined) {
+                  editor.pos(pos.row++, pos.col);
+              }
+              // reduce existing string length by one
+              if (editor.pos(pos.row,0).toString().length  > 0) {
+                  
+              }
+              */
+          }
       }
     }, false);
 
@@ -36,7 +57,7 @@
     });
     
     var show = function() {
-      var posx = 0, posy = editor.getTextOffset().y, currentPosition;
+      var posx = 0, posy = editor.getTextOffset().y+4, currentPosition;
       if (editor.pos(pos.row,0).toString()) {
         currentPosition = editor.pos(pos.row).length();
       }

@@ -4,7 +4,7 @@
     var ctx = editor.context(),
         background = "#2A3335",
         foreground = "#FFFFFF",
-        lineHeight = 10,
+        lineHeight = 18,
         l = 0;
 
 // TODO: use the editor's options here (background, textcolor, etc)
@@ -13,11 +13,10 @@
     // Add the render step to the editor
     editor.bind("cider.render", function (data) {
       
-      
       ctx.save();
       // clearRect isn't set first time around
       if (ctx.clearRect) {
-        ctx.clearRect (0, 0, 600, 600);
+          ctx.clearRect (0, 0, 600, 600);
       }
 
       ctx.fillStyle = background;
@@ -26,20 +25,19 @@
 
       var offset = editor.getTextOffset(),
           len    = editor.length();
+
       for (l=0; l<len; l++) {
-        var line = editor.pos(l,0);
-        ctx.fillText(line.toString(), 
-                     offset.x+5, 
-                     (lineHeight*l)+offset.y);
+          var line = editor.pos(l,0);
+          ctx.fillText(line.toString(), offset.x, lineHeight*l+18);
       }
       ctx.restore();
     });
     
     var ms = 0, interval = 30;
     setInterval(function() {
-      last=ms;
-      ms+=interval;
-      editor.trigger("cider.render", {tick: ms});
+        last=ms;
+        ms+=interval;
+        editor.trigger("cider.render", {tick: ms});
     }, 30);
     
   };
