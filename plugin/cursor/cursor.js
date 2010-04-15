@@ -33,15 +33,13 @@
         charHeight       = 16,
         currentOperation = null;
 
-    self.doCurrentOperation = function() {
+    editor.bind("cider.render",  function() {
         currentOperation();
-    };
-
-    editor.bind("cider.render", self.doCurrentOperation);
+    });
     
     var show = function() {
       if (editor.lines[pos.row]) {
-          var currPos = editor.lines[pos.row].length;
+          var currPos = editor.line(pos.row).length();
       } else {
           var currPos = 0;
       }
@@ -51,9 +49,10 @@
       } else {
           posx = currPos*charWidth+12;
       }
-
+      ctx.save();
       ctx.fillStyle = "white";//"rgba(255,102,51,255)";
       ctx.fillRect(posx,10,2,charHeight);
+      ctx.restore();
     };
     
     var hide = function() {
