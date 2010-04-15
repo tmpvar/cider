@@ -8,14 +8,14 @@
 // TODO: make the linenums only generate once
 (function(cider) {
 
-  cider.linenum = function(editor) {
+  cider.plugins.linenum = function(editor) {
       
       var ctx = editor.context(),
           width = 30;
 
-      var offset = editor.getOffset();
+      var offset = editor.getTextOffset();
       offset.x += width;
-      editor.setOffset(offset);
+      editor.setTextOffset(offset);
 
       editor.bind("cider.render",function() {
         var l = 0,
@@ -36,5 +36,4 @@
         ctx.restore();
       });
   };
-  cider.linenum.prototype = {};
 })(cider);
