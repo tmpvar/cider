@@ -80,7 +80,7 @@
             
             case 37: // left
               // start of line
-              if (pos.row > 0) {
+              if (pos.row > 0 && pos.col === 0) {
                 pos.row--;
                 pos.col=editor.pos(pos.row, pos.col).length();
               } else if (pos.col > 0){
@@ -91,7 +91,7 @@
             
             case 39: // right
               // end of line
-              if (pos.row >= editor.pos(pos.row, pos.col).length()) {
+              if (pos.col > editor.pos(pos.row, pos.col).length()) {
                 if (pos.row < editor.length()-1) {
                   pos.row++;
                   pos.col = 0;
@@ -114,20 +114,15 @@
     });
     
     var show = function() {
-      var posx = editor.getTextOffset().x, 
-          posy = pos.row * charHeight, currentPosition;
-     
-      if (editor.pos(pos.row,0).toString()) {
-        currentPosition = editor.pos(pos.row).length();
-      }
-      
-      if (currentPosition > 0) {
-        posx += pos.col*charWidth;
-      } else {
-        posx += 4;
+      var posx   = editor.getTextOffset().x, 
+          posy   = pos.row * charHeight, currentPosition;
+          length = editor.pos(pos.row,0).length();
+
+      if (length > 0) {
+        posx += ctx.measureText(editor.pos(pos.row,0).toString().substring(0,pos.col)).width;
       }
       ctx.save();
-      ctx.fillStyle = "white";
+      ctx.fillStyle = "white";  
       ctx.fillRect(posx,posy,2,charHeight);
       ctx.restore();
     };
