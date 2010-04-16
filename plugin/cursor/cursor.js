@@ -30,24 +30,21 @@
         pos.col+=event.character.length;
       } else {
           if (event.keyCode == "13") {
-              editor.pos(pos.row++,pos.col);
-              var x = editor.getTextOffset().x;
-              editor.setTextOffset({x:x, y:pos.row*18});
+            pos.row++;
+            pos.col=0;
           } else if (event.keyCode =="8") {
-              /* BACKSPACE
-              // begining of line
-              if (editor.pos(pos.row,0).toString().length  === 0) {
-                  editor.pos(pos.row--,pos.col);
-              }
-              // first line
-              if (editor.pos(pos.row,0).toString().length  === undefined) {
-                  editor.pos(pos.row++, pos.col);
-              }
-              // reduce existing string length by one
-              if (editor.pos(pos.row,0).toString().length  > 0) {
-                  
-              }
-              */
+            
+            // first char in a line
+            if (pos.col === 0) {
+              pos.row = (pos.row === 0) ? pos.row : pos.row - 1;
+              pos.col = editor.pos(pos.row,0).length();
+              // TODO: bring in the rest of the line after backspace
+              
+            // anywhere else in the line
+            } else {
+              pos.col--;
+              editor.pos(pos.row,pos.col).remove();
+            }
           }
       }
     }, false);
@@ -57,15 +54,17 @@
     });
     
     var show = function() {
-      var posx = 0, posy = editor.getTextOffset().y+4, currentPosition;
+      var posx = editor.getTextOffset().x, 
+          posy = pos.row * charHeight, currentPosition;
+     
       if (editor.pos(pos.row,0).toString()) {
         currentPosition = editor.pos(pos.row).length();
       }
       
       if (currentPosition > 0) {
-        posx = currentPosition*charWidth+editor.getTextOffset().x+4;
+        posx += pos.col*charWidth+4;
       } else {
-        posx = editor.getTextOffset().x+4;
+        posx += 4;
       }
       ctx.save();
       ctx.fillStyle = "white";//"rgba(255,102,51,255)";

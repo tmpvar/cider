@@ -13,7 +13,6 @@
         document.addEventListener('keydown', handleKey, true);
 
         function handleKey (event) {
-            event.preventDefault();
             
             var code = event.keyCode,
                 char = "",
@@ -44,7 +43,7 @@
                     // Do Nothing
                     char = '';
                 }
-            } else  {
+            } else if (printKeys[code])  {
                 char = printKeys[code];
             }
             // add printable char to event for pickup
