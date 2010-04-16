@@ -36,16 +36,10 @@
                 191:"/", 192:"`", 219:"[", 220:"\\", 221:"]", 222:"\""
             };
             
-            if (event.shiftKey) {
-                if (event.shiftKey && event.keyCode != '16') {
-                    char = shiftKeys[code];
-                } else {
-                    // Do Nothing
-                    char = '';
-                }
-            } else if (printKeys[code])  {
-                char = printKeys[code];
+            if (printKeys[code]) {
+              char = event.shiftKey ? shiftKeys[code] : printKeys[code];
             }
+            
             // add printable char to event for pickup
             event.character = char;
         }

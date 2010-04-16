@@ -16,7 +16,7 @@
                   .addPlugin("renderer")
                   .addPlugin("keyboard")
                   .addPlugin("linenum")
-                  .addPlugin("cursor");
+                  .addPlugin("cursor").fromString(document.getElementById("canvas").innerHTML);
             }
         </script>
     </head>
@@ -32,7 +32,28 @@
     </p>
     <p>
       <h2>Standard Cider</h2>
-      <canvas id="canvas" height="600" width="600"></canvas>
+      <canvas id="canvas" height="600" width="600">body {
+	font-size: small;
+	font-family: sans-serif;
+}
+
+p {
+	line-height: 0;
+}
+
+p:first-child {
+	display: inline;
+}
+
+h1 {
+	display: inline;
+}
+        
+iframe, object {
+	border: 1px black solid;
+	margin: 2px;
+}  
+      </canvas>
     </p>
     
     </body>

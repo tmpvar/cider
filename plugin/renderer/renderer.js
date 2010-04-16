@@ -4,7 +4,7 @@
     var ctx = editor.context(),
         background = "#2A3335",
         foreground = "#FFFFFF",
-        lineHeight = editor.font.size.get(),
+        lineHeight = editor.font.size.lineHeight(),
         l = 0;
 
 // TODO: use the editor's options here (background, textcolor, etc)
@@ -24,7 +24,7 @@
 
       for (l=0; l<len; l++) {
           var line = editor.pos(l,0);
-          ctx.fillText(line.toString(), offset.x, lineHeight*l+18);
+          ctx.fillText(line.toString(), offset.x, lineHeight*(l+1));
       }
       ctx.restore();
     });

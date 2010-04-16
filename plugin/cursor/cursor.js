@@ -19,7 +19,7 @@
         x                = 10,
         y                = 10,
         charWidth        = 11,
-        charHeight       = 16,
+        charHeight       = editor.font.size.lineHeight(),
         currentOperation = null;
 
     // set up key press event listener
@@ -29,22 +29,82 @@
         editor.pos(pos.row, pos.col).insert(event.character);
         pos.col+=event.character.length;
       } else {
-          if (event.keyCode == "13") {
-            pos.row++;
-            pos.col=0;
-          } else if (event.keyCode =="8") {
+          switch (event.keyCode)
+          {
+            case 13:
+              pos.row++;
+              pos.col=0;
+            break;
             
-            // first char in a line
-            if (pos.col === 0) {
-              pos.row = (pos.row === 0) ? pos.row : pos.row - 1;
-              pos.col = editor.pos(pos.row,0).length();
-              // TODO: bring in the rest of the line after backspace
+            case 8:
+              // first char in a line
+              if (pos.col === 0) {
+                if (pos.row > 0) {
+                  pos.row--;
+                  pos.col = editor.pos(pos.row,0).length();
+                }
+                // TODO: bring in the rest of the line after backspace (needs other movement)
               
-            // anywhere else in the line
-            } else {
-              pos.col--;
-              editor.pos(pos.row,pos.col).remove();
-            }
+              // anywhere else in the line
+              } else {
+                pos.col--;
+                editor.pos(pos.row,pos.col).remove();
+              }
+            break;
+            
+            case 38: // up
+              if (pos.row > 0) {
+                pos.row--;
+              }
+              
+              // position the cursor correctly on the col
+              if (pos.col > editor.pos(pos.row,0).length()) {
+                pos.col = editor.pos(pos.row,0).length();
+              }
+            
+              event.preventDefault();
+            break;
+            
+            case 40: // down
+              if (pos.row < editor.length()-1) {
+                pos.row++;
+              }
+              
+              // position the cursor correctly on the col
+              if (pos.col > editor.pos(pos.row,0).length()) {
+                pos.col = editor.pos(pos.row,0).length();
+              }
+            
+              event.preventDefault();
+            break;
+            
+            case 37: // left
+              // start of line
+              if (pos.row > 0) {
+                pos.row--;
+                pos.col=editor.pos(pos.row, pos.col).length();
+              } else if (pos.col > 0){
+                pos.col--;
+              }
+              event.preventDefault();
+            break;
+            
+            case 39: // right
+              // end of line
+              if (pos.row >= editor.pos(pos.row, pos.col).length()) {
+                if (pos.row < editor.length()-1) {
+                  pos.row++;
+                  pos.col = 0;
+                }
+              } else {
+                pos.col++;
+              }
+              event.preventDefault();
+            break;
+            
+            case 32:
+              event.preventDefault();
+            break;
           }
       }
     }, false);
@@ -62,12 +122,12 @@
       }
       
       if (currentPosition > 0) {
-        posx += pos.col*charWidth+4;
+        posx += pos.col*charWidth;
       } else {
         posx += 4;
       }
       ctx.save();
-      ctx.fillStyle = "white";//"rgba(255,102,51,255)";
+      ctx.fillStyle = "white";
       ctx.fillRect(posx,posy,2,charHeight);
       ctx.restore();
     };
