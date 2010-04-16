@@ -4,7 +4,7 @@
     var ctx = editor.context(),
         background = "#2A3335",
         foreground = "#FFFFFF",
-        lineHeight = 18,
+        lineHeight = editor.font.size.get(),
         l = 0;
 
 // TODO: use the editor's options here (background, textcolor, etc)
@@ -14,15 +14,11 @@
     editor.bind("cider.render", function (data) {
       
       ctx.save();
-      // clearRect isn't set first time around
-      if (ctx.clearRect) {
-          ctx.clearRect (0, 0, 600, 600);
-      }
 
       ctx.fillStyle = background;
       ctx.fillRect (0, 0, 600, 600);
       ctx.fillStyle = foreground;
-
+      
       var offset = editor.getTextOffset(),
           len    = editor.length();
 

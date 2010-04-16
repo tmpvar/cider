@@ -19,11 +19,11 @@
         editor.bind("cider.render",function() {
             var l = 0,
                 height = 600,
-                lineHeight = 14,
+                lineHeight = editor.font.size.lineHeight(),
                 lines = height/lineHeight;
 
             ctx.save();
-            ctx.font = "11px Courier New";
+            ctx.font = editor.font.get();
             ctx.fillStyle = "black";
             ctx.fillRect(1, 1,width, height);
             ctx.fillStyle = "#DDD";
