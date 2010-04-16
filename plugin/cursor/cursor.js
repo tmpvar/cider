@@ -25,10 +25,12 @@
     // set up key press event listener
     // TODO: calls to keybinder plugin
     document.addEventListener('keydown', function(event){
+      currentOperation = show;
       if (event.character) {
         editor.pos(pos.row, pos.col).insert(event.character);
         pos.col+=event.character.length;
       } else {
+          
           switch (event.keyCode)
           {
             case 13:
@@ -117,6 +119,7 @@
             
             case 32:
               event.preventDefault();
+              event.stopImmediatePropagation();
             break;
           }
       }
