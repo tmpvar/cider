@@ -23,8 +23,7 @@
           len    = editor.length();
 
       for (l=0; l<len; l++) {
-          var line = editor.pos(l,0);
-          ctx.fillText(line.toString(), offset.x, lineHeight*(l+1));
+          ctx.fillText(editor.pos(l,0).toString(), offset.x, lineHeight*(l+1));
       }
       ctx.restore();
     });

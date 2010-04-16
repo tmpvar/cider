@@ -30,7 +30,7 @@
             ctx.textAlign = "right";
             
             for (l; l<lines; l++) {
-              ctx.fillText(l, 25, (lineHeight+4)*l);
+              ctx.fillText(l, 25, (lineHeight)*l);
             };
             
             ctx.restore();
