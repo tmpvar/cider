@@ -32,16 +32,29 @@
           switch (event.keyCode)
           {
             case 13:
-              pos.row++;
-              pos.col=0;
+              if (pos.col > editor.pos(pos.row,0).length()) {
+                pos.row++;
+                pos.col=0;
+              } else {
+                var start = editor.pos(pos.row,0).toString().substring(0,pos.col),
+                    end   = editor.pos(pos.row,0).toString().substring(pos.col);
+                editor.pos(pos.row, pos.col).fromString(start);
+                pos.row++;
+                pos.col = 0;
+                editor.pos(pos.row, pos.col).insertLine(end);
+              }
             break;
             
             case 8:
               // first char in a line
               if (pos.col === 0) {
+                var prev = editor.pos(pos.row,0).toString();
                 if (pos.row > 0) {
+                  prev = prev.substring(pos.col);
+                  editor.pos(pos.row, pos.col).removeLine();
                   pos.row--;
                   pos.col = editor.pos(pos.row,0).length();
+                  editor.pos(pos.row,pos.col).append(prev);
                 }
                 // TODO: bring in the rest of the line after backspace (needs other movement)
               
@@ -82,7 +95,7 @@
               // start of line
               if (pos.row > 0 && pos.col === 0) {
                 pos.row--;
-                pos.col=editor.pos(pos.row, pos.col).length();
+                pos.col=editor.pos(pos.row, 0).length();
               } else if (pos.col > 0){
                 pos.col--;
               }
@@ -91,7 +104,7 @@
             
             case 39: // right
               // end of line
-              if (pos.col > editor.pos(pos.row, pos.col).length()) {
+              if (pos.col > editor.pos(pos.row, 0).length()) {
                 if (pos.row < editor.length()-1) {
                   pos.row++;
                   pos.col = 0;
