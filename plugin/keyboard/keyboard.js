@@ -37,11 +37,12 @@
             };
             
             if (printKeys[code]) {
-              char = event.shiftKey ? shiftKeys[code] : printKeys[code];
+              char = (event.shiftKey) ? shiftKeys[code] : printKeys[code];
+              // add printable char to event for pickup
+              event.character = char;
             }
             
-            // add printable char to event for pickup
-            event.character = char;
+
         }
     };
 
