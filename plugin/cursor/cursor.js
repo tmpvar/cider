@@ -30,7 +30,6 @@
         editor.pos(pos.row, pos.col).insert(event.character);
         pos.col+=event.character.length;
       } else {
-          
           switch (event.keyCode)
           {
             case 13:
@@ -76,8 +75,6 @@
               if (pos.col > editor.pos(pos.row,0).length()) {
                 pos.col = editor.pos(pos.row,0).length();
               }
-            
-              event.preventDefault();
             break;
             
             case 40: // down
@@ -89,8 +86,6 @@
               if (pos.col > editor.pos(pos.row,0).length()) {
                 pos.col = editor.pos(pos.row,0).length();
               }
-            
-              event.preventDefault();
             break;
             
             case 37: // left
@@ -101,7 +96,6 @@
               } else if (pos.col > 0){
                 pos.col--;
               }
-              event.preventDefault();
             break;
             
             case 39: // right
@@ -114,12 +108,6 @@
               } else {
                 pos.col++;
               }
-              event.preventDefault();
-            break;
-            
-            case 32:
-              event.preventDefault();
-              event.stopImmediatePropagation();
             break;
           }
       }
