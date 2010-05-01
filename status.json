@@ -6,6 +6,7 @@
     "implement simple flow routines, for text-wrapping"
   ],
   "done" : [
+    "Move the canvas.getContext() into the renderer",
     "expose font metrics height/width via the cider api",
     "expose plugins and their actions via the cider api, for binding *events* to actions",
     "implement a simple cursor which performs operations on text",

@@ -11,15 +11,15 @@
         // set up key press event listener
         // TODO: calls to keybinder plugin
         
-        document.addEventListener('keydown', handleKey, true);
+        document.addEventListener('keypress', handleKey, true);
         
 
         function handleKey (event) {
             // prevent keys from affecting the browser
-            if (editor.getFocus == true) {
+            //if (editor.getFocus()) {
                 event.preventDefault();
-            }            
-            var code = event.keyCode,
+            //}            
+            var code = event.charCode,
                 char = "",
                 casing = "";
 

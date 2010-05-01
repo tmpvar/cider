@@ -24,13 +24,14 @@
 
     // set up key press event listener
     // TODO: calls to keybinder plugin
-    document.addEventListener('keydown', function(event){
+    document.addEventListener('keypress', function(event){
+      console.log(event);
       currentOperation = show;
       if (event.character) {
         editor.pos(pos.row, pos.col).insert(event.character);
         pos.col+=event.character.length;
       } else {
-          switch (event.keyCode)
+          switch (event.charCode)
           {
             case 13:
               if (pos.col > editor.pos(pos.row,0).length()) {
