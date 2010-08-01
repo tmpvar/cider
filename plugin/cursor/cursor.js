@@ -11,7 +11,6 @@
     // cursor position
     var pos = {col: 0, row: 0},self = this, ctx = editor.context();
 
-    
     var hideDuration     = 500,
         showDuration     = 500,
         opacity          = 0.5,
@@ -24,14 +23,13 @@
 
     // set up key press event listener
     // TODO: calls to keybinder plugin
-    document.addEventListener('keypress', function(event){
-      console.log(event);
+    editor.bind('keyboard.press', function(data){
       currentOperation = show;
       if (event.character) {
         editor.pos(pos.row, pos.col).insert(event.character);
         pos.col+=event.character.length;
       } else {
-          switch (event.charCode)
+          switch (event.key)
           {
             case 13:
               if (pos.col > editor.pos(pos.row,0).length()) {
@@ -117,7 +115,7 @@
     editor.bind("cider.render",  function() {
         currentOperation();
     });
-    
+
     var show = function() {
       var posx   = editor.getTextOffset().x, 
           posy   = pos.row * charHeight, currentPosition;
@@ -131,11 +129,11 @@
       ctx.fillRect(posx,posy,2,charHeight);
       ctx.restore();
     };
-    
+
     var hide = function() {
         // fade out or whatever..
     };
-      
+
     var cycleRenderOperation = function() {
         if (currentOperation === hide) {
             currentOperation = show;

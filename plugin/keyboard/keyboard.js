@@ -12,14 +12,18 @@
         // TODO: calls to keybinder plugin
         
         document.addEventListener('keypress', handleKey, true);
-        
+        document.addEventListener('keydown', handleKey, true);
 
         function handleKey (event) {
+            event.stopImmediatePropagation();
+            event.stopPropagation();
+            event.preventDefault();
+            
             // prevent keys from affecting the browser
             //if (editor.getFocus()) {
-                event.preventDefault();
-            //}            
-            var code = event.charCode,
+
+            //}
+            var code = event.charCode || event.keyCode,
                 char = "",
                 casing = "";
 
@@ -45,9 +49,10 @@
               char = (event.shiftKey) ? shiftKeys[code] : printKeys[code];
               // add printable char to event for pickup
               event.character = char;
+            } else {
+              event.key = code;
             }
-            
-
+            editor.trigger("keyboard.press", event);
         }
     };
 
