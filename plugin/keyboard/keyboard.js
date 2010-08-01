@@ -2,7 +2,7 @@
  * Keybinder - Canvas Plugin
  *
  * Licensed under the MIT (LICENSE.txt)
- * 
+ *
  */
 
 (function(cider) {
@@ -10,7 +10,7 @@
 
         // set up key press event listener
         // TODO: calls to keybinder plugin
-        
+
         document.addEventListener('keypress', handleKey, true);
         document.addEventListener('keydown', handleKey, true);
 
@@ -18,7 +18,7 @@
             event.stopImmediatePropagation();
             event.stopPropagation();
             event.preventDefault();
-            
+
             // prevent keys from affecting the browser
             //if (editor.getFocus()) {
 
@@ -44,7 +44,7 @@
                 88:"x", 89:"y", 90:"z", 107:"=", 109:"-", 110:".", 188:",", 190:".",
                 191:"/", 192:"`", 219:"[", 220:"\\", 221:"]", 222:"\""
             };
-            
+
             if (printKeys[code]) {
               char = (event.shiftKey) ? shiftKeys[code] : printKeys[code];
               // add printable char to event for pickup
