@@ -5,10 +5,6 @@
         <title>Cider: Canvas Text Editor</title>
         <script type="text/javascript" src="../carena/lib/carena.js"></script>
         <script type="text/javascript" src="lib/cider.js"></script>
-        <!--script type="text/javascript" src="plugin/renderer/renderer.js"></script>
-        <script type="text/javascript" src="plugin/keyboard/keyboard.js"></script>
-        <script type="text/javascript" src="plugin/linenum/linenum.js"></script>
-        <script type="text/javascript" src="plugin/cursor/cursor.js"></script-->
 
 
         <script type="text/javascript">
@@ -40,12 +36,12 @@
                   feature.Node,
                   feature.RelativeToParent,
                   cider.feature.Textual,
-                  //cider.feature.Editable,
+                  cider.feature.Editable,
                   //cider.feature.LineNumbers
                 ]);
 
                 scene = window.scene = carena.Build({}, [feature.Node, feature.Eventable]);
-                scene.event.bind("*", function(name) { console.log(name); });
+//                scene.event.bind("*", function(name) { console.log(name); });
                 scene.add(editorWindow.add(editor));
                 camera.target = scene;
                 setTimeout(function render() {
