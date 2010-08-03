@@ -7,7 +7,7 @@
 
 (function(cider) {
 
-  cider.plugins.cursor = function(editor) {
+  cider.plugins.cursor = function(obj,) {
     // cursor position
     var pos = {col: 0, row: 0},self = this, ctx = editor.context();
 

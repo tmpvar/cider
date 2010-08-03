@@ -22,8 +22,7 @@ cider.feature.KeyMap = function(obj, options) {
         // set up key press event listener
         // TODO: calls to keybinder plugin
 
-        document.addEventListener('keypress', handleKey, true);
-        document.addEventListener('keydown', handleKey, true);
+
 
         function handleKey (event) {
             event.stopImmediatePropagation();
