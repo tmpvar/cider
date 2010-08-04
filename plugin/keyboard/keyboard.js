@@ -63,11 +63,12 @@ cider.feature.KeyMap = function(obj, options) {
 
             if (printKeys[code]) {
               char = (event.shiftKey) ? shiftKeys[code] : printKeys[code];
-              // add printable char to event for pickup
               event.character = char;
             } else {
+              console.log(code);
               event.key = code;
             }
+
             editor.trigger("keyboard.press", event);
         }
     };
