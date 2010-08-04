@@ -13,7 +13,7 @@
                 renderer = carena.Build({}, [feature.Renderer], {
                   canvas: document.getElementsByTagName("canvas")[0]
                 }),
-                camera = carena.Build({}, [feature.Camera, feature.DropManager], {
+                camera = carena.Build({}, [feature.Camera], {
                   renderer: renderer
                 }),
                 editorWindow = carena.Build({
@@ -38,24 +38,22 @@
                   cider.feature.Textual,
                   cider.feature.Editable,
                   //cider.feature.LineNumbers
+                ]),
+                lineNumbers = carena.Build({},[
+                  cider.feature.LineNumbers,
+                  feature.RelativeToParent
                 ]);
 
-                scene = window.scene = carena.Build({}, [feature.Node, feature.Eventable]);
-//                scene.event.bind("*", function(name) { console.log(name); });
-                scene.add(editorWindow.add(editor));
+                scene = window.scene = carena.Build({}, [
+                  feature.Node,
+                  feature.Eventable
+                ]);
+                scene.add(editorWindow.add(editor.add(lineNumbers)));
                 camera.target = scene;
                 setTimeout(function render() {
                   camera.render();
                   setTimeout(render, 0);
                 }, 0);
-/*
-
-                cider(document.getElementById("canvas"))
-                  .addPlugin("renderer")
-                  .addPlugin("keyboard")
-                  .addPlugin("linenum")
-                  .addPlugin("cursor").fromString(document.getElementById("canvas").innerHTML);
-              */
             }
         </script>
     </head>
