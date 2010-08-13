@@ -3,6 +3,14 @@
 <html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Cider: Canvas Text Editor</title>
+        <style>
+          @font-face {
+            font-family: "ProggyClean";
+            src: url(fonts/ProggyClean.ttf);
+          }
+
+
+        </style>
         <script type="text/javascript" src="../carena/lib/carena.js"></script>
         <script type="text/javascript" src="lib/cider.js"></script>
 
@@ -43,6 +51,8 @@
                   cider.feature.LineNumbers,
                   feature.RelativeToParent
                 ]);
+
+                editor.font.set("16px ProggyClean");
 
                 scene = window.scene = carena.Build({}, [
                   feature.Node,
