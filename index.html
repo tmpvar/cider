@@ -25,21 +25,24 @@
                   renderer: renderer
                 }),
                 editorWindow = carena.Build({
+                  text : "Cider",
                   x: 0,
                   y: 0,
-                  height: 400,
+                  height: 381,
                   width:400,
-                  color: '#1A2021'
+                  background: '#1A2021',
+                  offset: {x: 10, y: 30}
                 }, [
                   feature.Node,
-                  feature.Draggable
+                  feature.Draggable,
+                  cider.feature.Textual
                 ]),
                 editor = carena.Build({
                   text : "Hello\nWorld!",
                   x : 10,
-                  y : 40,
+                  y : 30,
                   width : 380,
-                  height: 350
+                  height: 341
                 },[
                   feature.Node,
                   feature.RelativeToParent,
