@@ -21,7 +21,7 @@
                 renderer = carena.build({}, ["carena.Renderer"], {
                   canvas: document.getElementsByTagName("canvas")[0]
                 }),
-                camera = carena.build({}, ["carena.Camera"], {
+                camera = carena.build({}, ["carena.Camera", "carena.DragManager"], {
                   renderer: renderer
                 }),
                 editorWindow = carena.build({
