@@ -18,13 +18,13 @@
         <script type="text/javascript">
             window.onload = function() {
             var feature = carena.feature,
-                renderer = carena.Build({}, [feature.Renderer], {
+                renderer = carena.build({}, ["carena.Renderer"], {
                   canvas: document.getElementsByTagName("canvas")[0]
                 }),
-                camera = carena.Build({}, [feature.Camera], {
+                camera = carena.build({}, ["carena.Camera"], {
                   renderer: renderer
                 }),
-                editorWindow = carena.Build({
+                editorWindow = carena.build({
                   text : "Cider .1",
                   x: 0,
                   y: 0,
@@ -33,33 +33,33 @@
                   background: '#1A2021',
                   offset: {x: 10, y: 10}
                 }, [
-                  feature.Node,
-                  feature.Draggable,
-                  cider.feature.Textual
+                  "carena.Node",
+                  "carena.Draggable",
+                  "cider.Textual"
                 ]),
-                editor = carena.Build({
+                editor = carena.build({
                   text : "Hello\nWorld!",
                   x : 10,
                   y : 35,
                   width : 380,
                   height: 341
                 },[
-                  feature.Node,
-                  feature.RelativeToParent,
-                  cider.feature.Textual,
-                  cider.feature.Editable,
-                  //cider.feature.LineNumbers
+                  "carena.Node",
+                  "carena.RelativeToParent",
+                  "cider.Textual",
+                  "cider.Editable",
+                  //"cider.LineNumbers"
                 ]),
-                lineNumbers = carena.Build({},[
-                  cider.feature.LineNumbers,
-                  feature.RelativeToParent
+                lineNumbers = carena.build({},[
+                  "cider.LineNumbers",
+                  "carena.RelativeToParent"
                 ]);
 
                 editor.font.set("16px ProggyClean");
 
-                scene = window.scene = carena.Build({}, [
-                  feature.Node,
-                  feature.Eventable
+                scene = window.scene = carena.build({}, [
+                  "carena.Node",
+                  "carena.Eventable"
                 ]);
                 scene.add(editorWindow.add(editor.add(lineNumbers)));
                 camera.target = scene;
