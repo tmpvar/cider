@@ -28,7 +28,7 @@
                   text : "Cider .1",
                   x: 0,
                   y: 0,
-                  height: 386,
+                  height: 395,
                   width:400,
                   background: '#1A2021',
                   offset: {x: 10, y: 10}
@@ -42,26 +42,49 @@
                   x : 10,
                   y : 35,
                   width : 380,
-                  height: 341
+                  height: 171
                 },[
                   "carena.Node",
                   "carena.RelativeToParent",
                   "cider.Textual",
                   "cider.Editable",
+                  "cider.FocusTarget"
+                  //"cider.LineNumbers"
+                ]),
+                editor2 = carena.build({
+                  text : "Hello\nWorld!2",
+                  x : 10,
+                  y : 215,
+                  width : 380,
+                  height: 170
+                },[
+                  "carena.Node",
+                  "carena.RelativeToParent",
+                  "cider.Textual",
+                  "cider.Editable",
+                  "cider.FocusTarget"
                   //"cider.LineNumbers"
                 ]),
                 lineNumbers = carena.build({},[
                   "cider.LineNumbers",
                   "carena.RelativeToParent"
                 ]);
+                lineNumbers2 = carena.build({},[
+                  "cider.LineNumbers",
+                  "carena.RelativeToParent"
+                ]);
 
                 editor.font.set("16px ProggyClean");
+                editor2.font.set("16px ProggyClean");
 
                 scene = window.scene = carena.build({}, [
                   "carena.Node",
                   "carena.Eventable"
                 ]);
+
                 scene.add(editorWindow.add(editor.add(lineNumbers)));
+                          editorWindow.add(editor2.add(lineNumbers2));
+
                 camera.target = scene;
                 setTimeout(function render() {
                   camera.render();
