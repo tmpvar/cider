@@ -84,7 +84,9 @@
 
                 scene.add(editorWindow.add(editor.add(lineNumbers)));
                           editorWindow.add(editor2.add(lineNumbers2));
-
+scene.event.bind("text.*", function(name, data) {
+  console.log(name, data.previous, data.current);
+})
                 camera.target = scene;
                 setTimeout(function render() {
                   camera.render();
