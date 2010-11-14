@@ -29,7 +29,7 @@
                   x: 0,
                   y: 0,
                   height: 395,
-                  width:400,
+                  width:800,
                   background: '#1A2021'
                 }, [
                   "carena.Node",
@@ -37,10 +37,10 @@
                   "cider.Textual"
                 ]),
                 editor = carena.build({
-                  text : "Hello World!\nFont: Proggy Clean",
+                  text : document.getElementById("canvas").innerHTML,
                   x : 10,
                   y : 35,
-                  width : 380,
+                  width : 580,
                   height: 171
                 },[
                   "carena.Box",
@@ -107,28 +107,30 @@ window.editor = editor;
     <h1>Cider</h1>
     <p>tiny canvas text editor</p>
     <p>
-      <canvas id="canvas" height="600" width="600" tabindex="1" onFocus="">
-        body {
-	        font-size: small;
-	        font-family: sans-serif;
-        }
+      <canvas id="canvas" height="800" width="700" tabindex="1" onFocus="">
+var example = {
+  require : function(name, args) {
+    var obj = args[0];
+    obj.features = obj.features || {};
 
-        p {
-	        line-height: 0;
-        }
+    for (var i=0; i&lt;obj.features.length; i++) {
+      if (obj.features[i] === name) { return }
+    }
 
-        p:first-child {
-	        display: inline;
-        }
+    if (!obj.features[name]) {
+      if (typeof carena.features[name] !== 'function') {
+        throw new Error("Feature '" + name  + "' is not registered!");
+      }
+      //obj.features[name] = carena.features[name];
+      if (!obj.features) {
+        obj.features = [];
+      }
 
-        h1 {
-	        display: inline;
-        }
-
-        iframe, object {
-	        border: 1px black solid;
-	        margin: 2px;
-        }
+      obj.features.unshift(name);
+      carena.features[name].apply(obj, args);
+    }
+  }
+};
       </canvas>
     </body>
 </html>
