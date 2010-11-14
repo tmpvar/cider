@@ -88,6 +88,9 @@
                   "carena.Node",
                   "carena.Eventable"
                 ]);
+window.editor = editor;
+                editor.pos(0,0).color = "red";
+                editor.pos(0,4).color = "orange";
 
                 scene.add(editorWindow.add(editor.add(lineNumbers).add(scrollBars)));
                           editorWindow.add(editor2.add(lineNumbers2).add(scrollBars2));
@@ -129,3 +132,4 @@
       </canvas>
     </body>
 </html>
+
