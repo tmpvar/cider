@@ -25,16 +25,16 @@
                   renderer: renderer
                 }),
                 editorWindow = carena.build({
-                  text : "Cider .1",
                   x: 0,
                   y: 0,
                   height: 395,
                   width:600,
-                  background: '#1A2021'
+                  style : {
+                    backgroundColor: '#1A2021'
+                  }
                 }, [
                   "carena.Node",
                   "carena.Draggable",
-                  "cider.Textual"
                 ]),
                 editor = carena.build({
                   text : document.getElementById("canvas").innerHTML,
@@ -62,7 +62,6 @@
                   "cider.Textual",
                   "cider.Editable",
                   "cider.FocusTarget"
-                  //"cider.LineNumbers"
                 ]),
                 lineNumbers = carena.build({},[
                   "cider.LineNumbers",
@@ -88,12 +87,13 @@
                   "carena.Node",
                   "carena.Eventable"
                 ]);
-window.editor = editor;
+
                 editor.pos(0,0).color = "red";
                 editor.pos(0,4).color = "orange";
 
-                scene.add(editorWindow.add(editor.add(lineNumbers).add(scrollBars)));
-                          editorWindow.add(editor2.add(lineNumbers2).add(scrollBars2));
+                editorWindow.add(editor.add(lineNumbers).add(scrollBars))
+                            .add(editor2.add(lineNumbers2).add(scrollBars2));
+                scene.add(editorWindow);
 
                 camera.target = scene;
                 setTimeout(function render() {
