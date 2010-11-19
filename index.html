@@ -71,12 +71,16 @@
                   "cider.LineNumbers",
                   "carena.RelativeToParent"
                 ]),
-                scrollBars = carena.build({},[
+                scrollBars = carena.build({
+                  target : editor
+                },[
                   "cider.ScrollBars",
                   "carena.Draggable",
                   "carena.RelativeToParent",
                 ]),
-                scrollBars2 = carena.build({},[
+                scrollBars2 = carena.build({
+                  target : editor2
+                },[
                   "cider.ScrollBars",
                   "carena.Draggable",
                   "carena.RelativeToParent"
@@ -91,8 +95,8 @@
                 editor.pos(0,0).color = "red";
                 editor.pos(0,4).color = "orange";
 
-                editorWindow.add(editor.add(lineNumbers).add(scrollBars))
-                            .add(editor2.add(lineNumbers2).add(scrollBars2));
+                editorWindow.add(editor.add(lineNumbers)).add(scrollBars)
+                            .add(editor2.add(lineNumbers2)).add(scrollBars);
                 scene.add(editorWindow);
 
                 camera.target = scene;
