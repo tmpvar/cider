@@ -100,7 +100,7 @@
                 editorWindow.add(editor.add(lineNumbers)).add(scrollBars)
                             .add(editor2.add(lineNumbers2)).add(scrollBars2);
                 scene.add(editorWindow);
-
+window.editor = editor;
                 camera.target = scene;
                 setTimeout(function render() {
                   camera.render();
