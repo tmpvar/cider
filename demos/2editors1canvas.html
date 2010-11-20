@@ -6,7 +6,7 @@
         <style>
           @font-face {
             font-family: "ProggyClean";
-            src: url(fonts/ProggyClean.ttf);
+            src: url(../fonts/ProggyClean.ttf);
           }
           body, h1 {
             font-family: verdana;
@@ -14,8 +14,8 @@
           }
 
         </style>
-        <script type="text/javascript" src="../carena/lib/carena.js"></script>
-        <script type="text/javascript" src="lib/cider.js"></script>
+        <script type="text/javascript" src="../../carena/lib/carena.js"></script>
+        <script type="text/javascript" src="../lib/cider.js"></script>
 
 
         <script type="text/javascript">
@@ -30,20 +30,21 @@
                 editorWindow = carena.build({
                   x: 0,
                   y: 0,
-                  height: 400,
-                  width:700,
+                  height: 395,
+                  width:600,
                   style : {
                     backgroundColor: '#1A2021'
                   }
                 }, [
                   "carena.Node",
+                  "carena.Draggable",
                 ]),
                 editor = carena.build({
                   text : document.getElementById("canvas").innerHTML,
-                  x : 2,
-                  y : 2,
-                  width : 696,
-                  height: editorWindow.height - 4
+                  x : 10,
+                  y : 35,
+                  width : 580,
+                  height: 171
                 },[
                   "carena.Box",
                   "carena.RelativeToParent",
@@ -53,7 +54,24 @@
                   "cider.TextualSelection",
                   "cider.Clipboard"
                 ]),
+                editor2 = carena.build({
+                  text : "Hello World!\nFont: Courier New",
+                  x : 10,
+                  y : 215,
+                  width : 580,
+                  height: 170
+                },[
+                  "carena.Box",
+                  "carena.RelativeToParent",
+                  "cider.Textual",
+                  "cider.Editable",
+                  "cider.FocusTarget"
+                ]),
                 lineNumbers = carena.build({},[
+                  "cider.LineNumbers",
+                  "carena.RelativeToParent"
+                ]),
+                lineNumbers2 = carena.build({},[
                   "cider.LineNumbers",
                   "carena.RelativeToParent"
                 ]),
@@ -64,17 +82,28 @@
                   "cider.ScrollBars",
                   "carena.Draggable",
                   "carena.RelativeToParent",
+                ]),
+                scrollBars2 = carena.build({
+                  target : editor2
+                },[
+                  "cider.ScrollBars",
+                  "carena.Draggable",
+                  "carena.RelativeToParent"
                 ]);
-
                 editor.font.set("16px ProggyClean");
+                editor2.font.set("12px Courier New");
                 scene = window.scene = carena.build({}, [
                   "carena.Node",
                   "carena.Eventable"
                 ]);
 
-                editorWindow.add(editor.add(lineNumbers)).add(scrollBars)
-                scene.add(editorWindow);
+                editor.pos(0,0).color = "red";
+                editor.pos(0,4).color = "orange";
 
+                editorWindow.add(editor.add(lineNumbers)).add(scrollBars)
+                            .add(editor2.add(lineNumbers2)).add(scrollBars2);
+                scene.add(editorWindow);
+window.editor = editor;
                 camera.target = scene;
                 setTimeout(function render() {
                   camera.render();
@@ -88,8 +117,14 @@
         </script>
     </head>
     <body>
-    <h1>Cider</h1>
-    <p>tiny canvas text editor [more <a href="demos/">demos</a> ]</p>
+    <h1>Cider - Two editors one canvas</h1>
+    <p>
+      This demo shows off the following:
+      <ul>
+        <li>Cider's focus model</li>
+        <li>Drag integration with <a href="http://tmpvar.com/project/carena">carena</a> (the outer border is a drag handle)</li>
+      </ul>
+    </p>
     <p>
       <canvas id="canvas" height="400" width="700" tabindex="1" onFocus="">var example = {
   require : function(name, args) {
@@ -102,7 +137,7 @@
 
     if (!obj.features[name]) {
       if (typeof carena.features[name] !== 'function') {
-        throw new Error("Feature '" + name  + "' is not registered!");
+        throw new Error("Feature '" + name  + "' is not registered!");ddddddddddddddddddddddddddddddddddddddd
       }
       //obj.features[name] = carena.features[name];
       if (!obj.features) {
