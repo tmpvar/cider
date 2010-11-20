@@ -76,10 +76,21 @@
                 scene.add(editorWindow);
 
                 camera.target = scene;
+                var frame = 0, fps = 1000/40, next = 0;
                 setTimeout(function render() {
+                  var start = (new Date()).getTime();
                   camera.render();
-                  setTimeout(render, 1000/40);
+                  var end = (new Date()).getTime();
+                  frame++;
+
+                  next = fps - (end-start);
+                  setTimeout(render, next);
                 }, 0);
+
+                setInterval(function fpsupdate() {
+                  document.getElementById("fps").innerHTML = frame + "fps";
+                  frame = 0;
+                }, 1000);
 
                 // bit of a hack so document.activeElement will work right off
                 // the bat
@@ -89,7 +100,7 @@
     </head>
     <body>
     <h1>Cider</h1>
-    <p>tiny canvas text editor [more <a href="demos/">demos</a> ]</p>
+    <p>tiny canvas text editor [more <a href="demos/">demos</a>] (<span id="fps"></span>)</p>
     <p>
       <canvas id="canvas" height="400" width="700" tabindex="1" onFocus="">var example = {
   require : function(name, args) {
