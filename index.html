@@ -48,7 +48,8 @@
                   "cider.Textual",
                   "cider.Editable",
                   "cider.FocusTarget",
-                  "cider.TextualSelection"
+                  "cider.TextualSelection",
+                  "cider.Clipboard"
                 ]),
                 editor2 = carena.build({
                   text : "Hello World!\nFont: Courier New",
@@ -104,6 +105,10 @@
                   camera.render();
                   setTimeout(render, 1000/40);
                 }, 0);
+
+                // bit of a hack so document.activeElement will work right off
+                // the bat
+                canvas.focus();
             }
         </script>
     </head>
