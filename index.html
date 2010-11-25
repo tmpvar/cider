@@ -86,7 +86,7 @@
                   next = fps - (end-start);
                   setTimeout(render, next);
                 }, 0);
-
+window.editor = editor;
                 setInterval(function fpsupdate() {
                   document.getElementById("fps").innerHTML = frame + "fps";
                   frame = 0;
