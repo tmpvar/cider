@@ -20,6 +20,7 @@
 
         <script type="text/javascript">
             window.onload = function() {
+
             var feature = carena.feature,
                 renderer = carena.build({}, ["carena.Renderer"], {
                   canvas: document.getElementsByTagName("canvas")[0]
@@ -73,10 +74,12 @@
                 ]);
 
                 editorWindow.add(editor.add(lineNumbers)).add(scrollBars)
+
                 scene.add(editorWindow);
 
                 camera.target = scene;
                 var frame = 0, fps = 1000/40, next = 0;
+
                 setTimeout(function render() {
                   var start = (new Date()).getTime();
                   camera.render();
