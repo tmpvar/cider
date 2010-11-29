@@ -23,7 +23,10 @@
 
             var feature = carena.feature,
                 renderer = carena.build({}, ["carena.Renderer"], {
-                  canvas: document.getElementsByTagName("canvas")[0]
+                  canvas: document.getElementsByTagName("canvas")[0],
+                  style : {
+                    backgroundColor : "white"
+                  }
                 }),
                 camera = carena.build({}, ["carena.Camera", "carena.DragManager"], {
                   renderer: renderer
@@ -34,7 +37,7 @@
                   height: 400,
                   width:700,
                   style : {
-                    backgroundColor: '#1A2021'
+                    backgroundColor: 'white'
                   }
                 }, [
                   "carena.Node",
@@ -44,7 +47,13 @@
                   x : 2,
                   y : 2,
                   width : 696,
-                  height: editorWindow.height - 4
+                  height: editorWindow.height - 4,
+                  style : {
+                    backgroundColor : "white",
+                    cursorColor     : "black",
+                    selectionColor  : "rgba(10, 255, 60, 0.4)",
+                    color           : "black"
+                  }
                 },[
                   "carena.Box",
                   "carena.RelativeToParent",
@@ -54,7 +63,12 @@
                   "cider.TextualSelection",
                   "cider.Clipboard"
                 ]),
-                lineNumbers = carena.build({},[
+                lineNumbers = carena.build({
+                  style : {
+                    backgroundColor: "#DDDDDD",
+                    color: "black"
+                  }
+                },[
                   "cider.LineNumbers",
                   "carena.RelativeToParent"
                 ]),
