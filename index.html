@@ -93,20 +93,11 @@
                 camera.target = scene;
                 var frame = 0, fps = 1000/40, next = 0;
 
-                setTimeout(function render() {
-                  var start = (new Date()).getTime();
+                var throttle;
+                requestAnimationFrame(function tick() {
+                  requestAnimationFrame(tick);
                   camera.render();
-                  var end = (new Date()).getTime();
-                  frame++;
-
-                  next = fps - (end-start);
-                  setTimeout(render, next);
-                }, 0);
-window.editor = editor;
-                setInterval(function fpsupdate() {
-                  document.getElementById("fps").innerHTML = frame + "fps";
-                  frame = 0;
-                }, 1000);
+                });
 
                 // bit of a hack so document.activeElement will work right off
                 // the bat
